@@ -12,8 +12,9 @@ Configured AWS Identity Center, created users, and assigned SecurityAudit permis
 - Security Best Practices  
 
 **Screenshot:**  
-[AWS Identity Center
+
 ]<img width="940" height="499" alt="image" src="https://github.com/user-attachments/assets/9e507c77-e2ee-4bb4-83c6-84a8fe6d1a1c" />
+
 
 
 
