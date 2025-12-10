@@ -11,13 +11,18 @@ Hosted a static portfolio website on Amazon S3, enabled public access using secu
 
 **Screenshots:**  
 - **S3 static website hosting enabled:**  
-  ![S3 Hosting](images/week8_s3_hosting.png)
+  <img width="1015" height="538" alt="image" src="https://github.com/user-attachments/assets/a6a99c10-8a5d-4e68-b6fc-c5bd6ae8b487" />
+
 
 - **Bucket Policy:**  
-  ![Bucket Policy](images/week8_bucket_policy.png)
+  <img width="1037" height="548" alt="image" src="https://github.com/user-attachments/assets/03d4f7cd-696e-400f-9958-daca6faf3207" />
+
 
 - **CloudFront distribution settings and deployment status:**  
-  ![CloudFront Distribution](images/week8_cloudfront_distribution.png)
+  <img width="1035" height="550" alt="image" src="https://github.com/user-attachments/assets/12255fa3-8337-41a7-90b5-7aff9f30f9c9" />
+
 
 - **Live website accessed via CloudFront domain:**  
-  ![Live Website](images/week8_live_website.png)
+  <img width="934" height="294" alt="image" src="https://github.com/user-attachments/assets/de245fb4-9354-4adf-93bf-f9d22f454fa2" />
+
+
