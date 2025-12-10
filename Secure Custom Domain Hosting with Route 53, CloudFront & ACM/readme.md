@@ -12,16 +12,21 @@ Registered a custom domain and connected it to AWS Route 53 by updating the name
 
 **Screenshots:**  
 - **Updated Nameserver settings pointing to Route 53 NS Records:**  
-  ![Nameservers Updated](images/week9_nameservers.png)
+  
 
 - **AWS Route 53 Hosted Zone:**  
-  ![Hosted Zone](images/week9_hosted_zone.png)
+  <img width="1063" height="567" alt="image" src="https://github.com/user-attachments/assets/1ae87e93-ca30-4586-ba81-a27352e0b3f5" />
+
 
 - **ACM SSL Certificate (Issued/Validated):**  
-  ![ACM Certificate](images/week9_acm_certificate.png)
+  <img width="1071" height="602" alt="image" src="https://github.com/user-attachments/assets/b8d9ca74-4ece-433b-a50c-21fa0a62ca6e" />
+
 
 - **CloudFront Distribution Settings:**  
-  ![CloudFront Settings](images/week9_cloudfront_settings.png)
+  <img width="1058" height="595" alt="image" src="https://github.com/user-attachments/assets/2e4d9340-dbdf-4793-aa1e-2fee6bfae54b" />
+
 
 - **Website Loading Over HTTPS:**  
-  ![HTTPS Website](images/week9_https_website.png)
+  <img width="1034" height="581" alt="image" src="https://github.com/user-attachments/assets/9ba2d3a1-022b-4b32-be31-61edea9038b0" />
+
+
