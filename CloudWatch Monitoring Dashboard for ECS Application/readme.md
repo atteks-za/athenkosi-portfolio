@@ -10,10 +10,14 @@ Deployed a containerized application (Nginx) on ECS Fargate, configured task CPU
 
 **Screenshots:**  
 - **ECS Cluster with running service:**  
-  ![alt text](image-2.png)
+  <img width="1044" height="588" alt="image" src="https://github.com/user-attachments/assets/77b48910-76f4-4fbc-a39e-7320eca7d201" />
+
 
 - **Task Definition showing CPU & Memory configuration:**  
-  ![Task Definition](images/week7_task_cpu_memory.png)
+  <img width="1038" height="584" alt="image" src="https://github.com/user-attachments/assets/87e5eb2b-db14-4beb-9131-2b2f2548d118" />
+
 
 - **CloudWatch Dashboard displaying CPU & Memory metrics:**  
-  ![CloudWatch Dashboard](images/week7_cloudwatch_dashboard.png)
+  <img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/ad5f9758-89fe-4cdf-909d-9e7d427170b6" />
+
+
