@@ -11,7 +11,9 @@ Registered a custom domain and connected it to AWS Route 53 by updating the name
 - S3 Website Delivery  
 
 **Screenshots:**  
-- **Updated Nameserver settings pointing to Route 53 NS Records:**  
+- **Updated Nameserver settings pointing to Route 53 NS Records:**
+  <img width="1080" height="607" alt="image" src="https://github.com/user-attachments/assets/52cb9e73-c668-498e-8338-2946f4f68d3f" />
+ 
   
 
 - **AWS Route 53 Hosted Zone:**  
@@ -28,5 +30,6 @@ Registered a custom domain and connected it to AWS Route 53 by updating the name
 
 - **Website Loading Over HTTPS:**  
   <img width="1034" height="581" alt="image" src="https://github.com/user-attachments/assets/9ba2d3a1-022b-4b32-be31-61edea9038b0" />
+
 
 
