@@ -1,4 +1,4 @@
-# **Welcome to my portfolio!**
+# **Welcome to my Portfolio!**
 
 
 I am a **Cloud & DevSecOps Engineer** passionate about building secure, automated, and scalable cloud solutions. My work spans **Cloud Engineering**, **Cloud Security**, and **DevOps**, with dedicated branches created for each domain to keep the projects organized and easy to explore.
