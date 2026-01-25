@@ -4,31 +4,6 @@ I successfully accomplished an **end-to-end CI/CD pipeline** for a Node.js CRUD 
 
 ---
 
-## 🚀 What I Built
-
-* Configured **GitHub webhooks** to trigger Jenkins automatically on every code push
-* Designed and implemented a **Jenkins CI/CD pipeline**
-* Integrated **SonarQube** for code quality, security checks, and quality gate enforcement
-* Containerized the application using **Docker**
-* Pushed Docker images to a **Docker registry**
-* Deployed the application to **AWS EC2** as a Docker container
-* Achieved **zero manual intervention** from commit to deployment
-
----
-
-## 🔄 End-to-End Flow (What Happens on Every Commit)
-
-1. Code is pushed to GitHub
-2. GitHub webhook triggers Jenkins
-3. Jenkins pulls the latest code
-4. Application is built and tested
-5. SonarQube analyzes code quality
-6. Quality gate validates the build
-7. Docker image is built and pushed
-8. Latest container is deployed to AWS EC2
-
----
-
 ## 📸 Evidence & Screenshots
 
 ### 1️⃣ GitHub Webhook Trigger
