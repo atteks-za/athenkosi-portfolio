@@ -47,6 +47,5 @@ A Node.js CRUD application running inside Docker on EC2 — deployed automatical
 ---
 
 ## 🧱 Architecture Diagram
-📸 *(<img width="940" height="1309" alt="image" src="https://github.com/user-attachments/assets/d6a8e9c2-73c9-4ba1-a80c-879aebbfb662" />
-)*
+*<img width="940" height="1309" alt="image" src="https://github.com/user-attachments/assets/d6a8e9c2-73c9-4ba1-a80c-879aebbfb662" />*
 
