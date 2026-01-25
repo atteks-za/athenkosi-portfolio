@@ -1,9 +1,3 @@
-what kind of file this should it be:# ✅ Project Accomplishment
-
-## End-to-End CI/CD Pipeline for Node.js CRUD Application
-
----
-
 ## 🏁 Summary
 
 I successfully accomplished an **end-to-end CI/CD pipeline** for a Node.js CRUD application, automating the complete journey from code commit to production deployment. This project reflects real-world DevOps practices, integrating CI, quality gates, containerization, and cloud deployment into a single automated workflow.
