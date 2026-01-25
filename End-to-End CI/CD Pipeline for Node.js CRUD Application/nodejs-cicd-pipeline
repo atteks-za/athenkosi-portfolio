@@ -1,0 +1,66 @@
+
+## 🏁 Summary
+
+I successfully accomplished an **end-to-end CI/CD pipeline** for a Node.js CRUD application, automating the complete journey from code commit to production deployment. This project reflects real-world DevOps practices, integrating CI, quality gates, containerization, and cloud deployment into a single automated workflow.
+
+-
+
+---
+
+## 📸 Evidence & Screenshots
+
+### 1️⃣ GitHub Webhook Trigger
+
+*Screenshot showing webhook configuration and trigger*
+
+📷 **Add screenshot here**
+`docs/screenshots/01-github-webhook.png`
+
+---
+
+### 2️⃣ Jenkins CI/CD Pipeline Execution
+
+*Screenshot showing successful Jenkins pipeline stages*
+
+📷 **Add screenshot here**
+`docs/screenshots/02-jenkins-pipeline.png`
+
+---
+
+### 3️⃣ SonarQube Quality Gate – PASSED
+
+*Screenshot showing code quality metrics and passed quality gate*
+
+📷 **Add screenshot here**
+`docs/screenshots/03-sonarqube-quality-gate.png`
+
+---
+
+### 4️⃣ Docker Image Build & Push
+
+*Screenshot showing Docker image build and push to registry*
+
+📷 **Add screenshot here**
+`docs/screenshots/04-docker-build-push.png`
+
+---
+
+### 5️⃣ Application Running on AWS EC2
+
+*Screenshot showing the Node.js app running via EC2 public IP*
+
+📷 **Add screenshot here**
+`docs/screenshots/05-ec2-running-app.png`
+
+---
+
+## 🎯 Key Outcomes
+
+* Fully automated CI/CD pipeline
+* Improved deployment reliability
+* Enforced quality standards before production
+* Faster release cycles
+* Reduced human error
+
+
+
