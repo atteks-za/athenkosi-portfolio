@@ -35,7 +35,9 @@ I successfully accomplished an **end-to-end CI/CD pipeline** for a Node.js CRUD 
 
 *Screenshot showing webhook configuration and trigger*
 
-![(screenshots/01-github-webhook.png)]
+
+![GitHub Webhook Trigger](screenshots/01-github-webhook.png)
+
 
 
 ---
