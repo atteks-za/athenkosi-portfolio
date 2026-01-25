@@ -3,7 +3,7 @@
 ## 📌 Project Overview
 This project demonstrates a **fully automated end-to-end CI/CD pipeline** for a Node.js CRUD application using modern DevOps tools and best practices.
 
-The goal of this project was to understand how real-world DevOps automation works — from code commit to production deployment — with **quality checks, containerization, and cloud deployment**.
+The goal of this project was to understand how real-world DevOps automation works from code commit to production deployment  with **quality checks, containerization, and cloud deployment**.
 
 Every code push triggers an automated pipeline that builds, tests, analyzes, packages, and deploys the application without manual intervention.
 
@@ -42,7 +42,7 @@ Every code push triggers an automated pipeline that builds, tests, analyzes, pac
    - Jenkins deploys the latest Docker container to **AWS EC2**
 
 🎯 **Result:**  
-A Node.js CRUD application running inside Docker on EC2 — deployed automatically on every successful commit.
+A Node.js CRUD application running inside Docker on EC2, deployed automatically on every successful commit.
 
 ---
 
