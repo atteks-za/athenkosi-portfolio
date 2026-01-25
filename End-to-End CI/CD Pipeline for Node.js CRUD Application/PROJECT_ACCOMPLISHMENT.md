@@ -43,37 +43,30 @@ I successfully accomplished an **end-to-end CI/CD pipeline** for a Node.js CRUD 
 
 ### 2️⃣ Jenkins CI/CD Pipeline Execution
 
-*Screenshot showing successful Jenkins pipeline stages*
+<img width="1910" height="1080" alt="02-jenkins-pipeline" src="https://github.com/user-attachments/assets/33b832fc-e334-4cb7-86a5-648d1d3af40b" />
 
-📷 **Add screenshot here**
-`docs/screenshots/02-jenkins-pipeline.png`
 
 ---
 
 ### 3️⃣ SonarQube Quality Gate – PASSED
 
-*Screenshot showing code quality metrics and passed quality gate*
+<img width="1910" height="1080" alt="03-sonarqube-quality-gate (2)" src="https://github.com/user-attachments/assets/31c3b72e-de13-4890-b4e8-237bdf53e6e5" />
 
-📷 **Add screenshot here**
-`docs/screenshots/03-sonarqube-quality-gate.png`
+
 
 ---
 
 ### 4️⃣ Docker Image Build & Push
 
-*Screenshot showing Docker image build and push to registry*
+<img width="1932" height="1080" alt="04-docker-build-push" src="https://github.com/user-attachments/assets/41283dd5-f5d2-4302-b858-9872ff9a2098" />
 
-📷 **Add screenshot here**
-`docs/screenshots/04-docker-build-push.png`
 
 ---
 
 ### 5️⃣ Application Running on AWS EC2
 
-*Screenshot showing the Node.js app running via EC2 public IP*
+<img width="1920" height="1080" alt="05-ec2-running-app" src="https://github.com/user-attachments/assets/f0c80828-817a-48a2-8ad2-43e1f6ba0e1f" />
 
-📷 **Add screenshot here**
-`docs/screenshots/05-ec2-running-app.png`
 
 ---
 
@@ -101,8 +94,3 @@ I successfully accomplished an **end-to-end CI/CD pipeline** for a Node.js CRUD 
 Completing this project gave me hands-on experience with real-world DevOps automation. It strengthened my understanding of CI/CD pipelines and demonstrated my ability to design, implement, and manage automated deployments in a cloud environment.
 
 ---
-
-**Project Status:** ✅ Successfully Completed
-
-**Author:** Your Name
-DevOps Engineer | CI/CD | Docker | AWS
