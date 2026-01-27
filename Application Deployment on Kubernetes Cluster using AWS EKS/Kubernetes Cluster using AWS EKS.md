@@ -15,7 +15,8 @@ The screenshots below illustrate the deployment workflow and infrastructure setu
 
 -  
 - **EKS Cluster & Worker Nodes:** Nodes registered and active
-  <img width="953" height="504" alt="crud deployment to kbernetes" src="https://github.com/user-attachments/assets/ede04754-767d-468e-a6ea-14c953c8c701" />
+ <img width="956" height="502" alt="nodes (2)" src="https://github.com/user-attachments/assets/8da5fe5f-3242-420d-98f4-0596dea683a6" />
+
 
 - 
 - **EC2 Management Instance:** Command-line operations for Docker and kubectl
