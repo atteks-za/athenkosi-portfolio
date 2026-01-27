@@ -13,7 +13,7 @@ const port = 3000;
 const db = mysql.createConnection({
     host: 'crud-mysql-db.ce34oek8cpu9.us-east-1.rds.amazonaws.com',
     user: 'root',
-    password: 'Athi123$',
+    password: '1234$',
     database: 'crud-mysql-db'
 });
 
