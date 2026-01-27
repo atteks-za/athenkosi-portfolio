@@ -5,6 +5,8 @@ The screenshots below illustrate the deployment workflow and infrastructure setu
 
 - **Internet Access:** Confirming public availability
 <img width="958" height="503" alt="crud application lb" src="https://github.com/user-attachments/assets/2bd43b7a-1691-4d4f-bf11-94d3f3c262ee" />
+<img width="959" height="502" alt="kube service" src="https://github.com/user-attachments/assets/87a46da8-04bb-4b82-839e-e8f3a7fe27c7" />
+
  
 - **AWS Load Balancer:** Active and routing traffic
   <img width="959" height="502" alt="kube service" src="https://github.com/user-attachments/assets/1386fd4c-5b00-45b4-83e4-f0dc49f60855" />
