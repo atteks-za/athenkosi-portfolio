@@ -1,5 +1,3 @@
-# Project Title
-**Application Deployment on Kubernetes Cluster using AWS EKS**
 
 ---
 
