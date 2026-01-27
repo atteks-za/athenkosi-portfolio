@@ -66,10 +66,8 @@ The screenshots below illustrate the deployment workflow and infrastructure setu
 - **EC2 Management Instance:** Command-line operations for Docker and kubectl  
 - **Docker Hub:** Uploaded and versioned Docker images  
 
-*Insert screenshots here*
 
 ---
 
-## 6. Architecture Diagram
-*Insert architecture diagram here showing EC2 instance, Docker workflow, EKS cluster, pods, and Load Balancer.*
+
 
