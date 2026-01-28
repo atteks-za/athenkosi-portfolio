@@ -1,6 +1,6 @@
 # Kubernetes Monitoring with Prometheus and Grafana
 
-## Introduction (4 min)
+## Introduction 
 
 This project demonstrates **Kubernetes monitoring using Prometheus and Grafana** on an **Amazon EKS cluster**. The goal is to provide visibility into cluster health, workloads, and resource usage using open-source, cloud-native tooling.
 
@@ -18,7 +18,7 @@ The project is designed as a **hands-on, end-to-end observability setup**, suita
 
 ---
 
-## Infrastructure Setup (3 min)
+## Infrastructure Setup 
 
 ### Prerequisites
 
@@ -43,7 +43,7 @@ The project is designed as a **hands-on, end-to-end observability setup**, suita
 
 ---
 
-## Installing and Configuring Tools (5 min)
+## Installing and Configuring Tools 
 
 ### Install kubectl
 
@@ -68,7 +68,7 @@ helm repo update
 
 ---
 
-## Deploying the Helm Chart (3 min)
+## Deploying the Helm Chart 
 
 ### Install kube-prometheus-stack
 
@@ -95,7 +95,7 @@ This deploys:
 
 ---
 
-## Accessing and Exploring Grafana (3 min)
+## Accessing and Exploring Grafana 
 
 ### Access Grafana
 
