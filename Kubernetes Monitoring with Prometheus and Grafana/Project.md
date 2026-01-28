@@ -68,17 +68,17 @@ All components are deployed inside the Kubernetes cluster using Helm charts.
 
 ## Implementation Workflow
 
-### 1. Introduction – Kubernetes Monitoring (4 min)
+### 1. Introduction – Kubernetes Monitoring 
 
 * Overview of Prometheus and Grafana
 * Understanding Kubernetes observability
 
-### 2. Infrastructure Setup (3 min)
+### 2. Infrastructure Setup 
 
 * Provision Amazon EKS cluster
 * Configure kubectl access
 
-### 3. Installing and Configuring Tools (5 min)
+### 3. Installing and Configuring Tools 
 
 * Install kubectl and Helm
 * Add Prometheus Helm repository
@@ -88,7 +88,7 @@ All components are deployed inside the Kubernetes cluster using Helm charts.
 * Deploy kube-prometheus-stack
 * Verify running services and pods
 
-### 5. Accessing and Exploring Grafana (3 min)
+### 5. Accessing and Exploring Grafana 
 
 * Access Grafana via port-forwarding
 * Explore Kubernetes dashboards
