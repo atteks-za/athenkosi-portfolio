@@ -64,7 +64,7 @@ To address these challenges, this project implements:
 4. Grafana queries Prometheus for metrics
 5. Dashboards visualize real-time cluster performance
 
-<img width="949" height="509" alt="api server" src="https://github.com/user-attachments/assets/cfec7f3f-d3c5-4a6e-977b-e0d2cb8a7a67" />
+![Uploading grafana architecture.png…]()
 
 ---
 
