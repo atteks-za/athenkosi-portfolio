@@ -130,17 +130,6 @@ kubectl get secret -n monitoring learn-prom-grafana \
 
 ---
 
-## Project Structure
-
-```
-.
-├── README.md
-├── PROJECT.md
-└── diagrams/
-    └── eks-prometheus-grafana-architecture.png
-```
-
----
 
 ## Key Learnings
 
