@@ -108,7 +108,7 @@ To address these challenges, this project implements:
 * Monitor node, pod, and namespace metrics
 
 <img width="960" height="504" alt="grafana dashboard" src="https://github.com/user-attachments/assets/5bfb3f61-3cab-4f35-8f91-89dc554ea86d" />
-<img width="957" height="509" alt="stress workload grafana metrics" src="https://github.com/user-attachments/assets/f52adc46-f5e2-4dd6-8882-4e4b6d9e022a" />
+
 
 ---
 
