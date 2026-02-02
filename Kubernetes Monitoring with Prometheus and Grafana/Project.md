@@ -1,3 +1,7 @@
+
+
+---
+
 # Project Document
 
 ## Project Title
@@ -13,6 +17,12 @@ This project focuses on designing and implementing a **Kubernetes observability 
 The objective is to gain real-time visibility into Kubernetes cluster performance, resource utilization, and application health using industry-standard, cloud-native tools.
 
 This project is suitable for **DevOps engineers, cloud engineers, and SRE learners** who want hands-on experience with Kubernetes monitoring.
+
+📸 **Screenshot Placeholder – High-Level Overview**
+
+```text
+[ Screenshot: Architecture or overview diagram of EKS + Prometheus + Grafana ]
+```
 
 ---
 
@@ -39,6 +49,12 @@ To address these challenges, this project implements:
 
 The solution provides a centralized monitoring platform with prebuilt dashboards and alerting capabilities.
 
+📸 **Screenshot Placeholder – Deployed Monitoring Stack**
+
+```text
+[ Screenshot: kubectl get pods -n monitoring output ]
+```
+
 ---
 
 ## Technology Stack
@@ -64,34 +80,96 @@ The solution provides a centralized monitoring platform with prebuilt dashboards
 
 All components are deployed inside the Kubernetes cluster using Helm charts.
 
+📸 **Screenshot Placeholder – Architecture Diagram**
+
+```text
+[ Screenshot: Monitoring architecture diagram ]
+```
+
 ---
 
 ## Implementation Workflow
 
-### 1. Introduction – Kubernetes Monitoring 
+### 1. Introduction – Kubernetes Monitoring
 
 * Overview of Prometheus and Grafana
 * Understanding Kubernetes observability
 
-### 2. Infrastructure Setup 
+---
+
+### 2. Infrastructure Setup
 
 * Provision Amazon EKS cluster
 * Configure kubectl access
 
-### 3. Installing and Configuring Tools 
+📸 **Screenshot Placeholder – EKS Cluster**
+
+```text
+[ Screenshot: AWS EKS cluster in AWS Console ]
+```
+
+📸 **Screenshot Placeholder – kubectl Access**
+
+```text
+[ Screenshot: kubectl get nodes output ]
+```
+
+---
+
+### 3. Installing and Configuring Tools
 
 * Install kubectl and Helm
 * Add Prometheus Helm repository
+
+📸 **Screenshot Placeholder – Helm Repo Added**
+
+```text
+[ Screenshot: helm repo list output ]
+```
+
+---
 
 ### 4. Deploying Helm Chart (3 min)
 
 * Deploy kube-prometheus-stack
 * Verify running services and pods
 
-### 5. Accessing and Exploring Grafana 
+📸 **Screenshot Placeholder – Helm Installation**
+
+```text
+[ Screenshot: helm install kube-prometheus-stack command ]
+```
+
+📸 **Screenshot Placeholder – Monitoring Namespace**
+
+```text
+[ Screenshot: kubectl get all -n monitoring ]
+```
+
+---
+
+### 5. Accessing and Exploring Grafana
 
 * Access Grafana via port-forwarding
 * Explore Kubernetes dashboards
+
+📸 **Screenshot Placeholder – Grafana Login Page**
+
+```text
+[ Screenshot: Grafana login screen ]
+```
+
+📸 **Screenshot Placeholder – Grafana Dashboard**
+
+```text
+[ Screenshot: Kubernetes cluster overview dashboard ]
+```
+
+📸 **Screenshot Placeholder – Node & Pod Metrics**
+
+```text
+[ Screenshot: CPU and memory usage dashboards ]
+```
 
 ---
 
@@ -112,6 +190,12 @@ All components are deployed inside the Kubernetes cluster using Helm charts.
 * Hands-on experience with Amazon EKS
 * Ability to interpret metrics and dashboards
 
+📸 **Screenshot Placeholder – Metrics Validation**
+
+```text
+[ Screenshot: Prometheus targets page showing healthy targets ]
+```
+
 ---
 
 ## Limitations
@@ -130,6 +214,12 @@ All components are deployed inside the Kubernetes cluster using Helm charts.
 * Configure Alertmanager notifications (Slack / Email)
 * Integrate long-term storage (Thanos or Cortex)
 
+📸 **Screenshot Placeholder – Future Architecture**
+
+```text
+[ Screenshot: Extended architecture with Thanos / Ingress ]
+```
+
 ---
 
 ## Conclusion
@@ -143,3 +233,11 @@ This project demonstrates a complete Kubernetes monitoring setup using Prometheu
 * [https://github.com/prometheus-operator/kube-prometheus](https://github.com/prometheus-operator/kube-prometheus)
 * [https://prometheus.io](https://prometheus.io)
 * [https://grafana.com](https://grafana.com)
+
+---
+
+If you want, I can next:
+
+* Convert this into a **GitHub README**
+* Add **exact kubectl/helm commands** under each screenshot
+* Turn it into a **portfolio-ready PDF or Word doc**
