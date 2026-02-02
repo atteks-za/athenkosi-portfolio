@@ -126,7 +126,7 @@ To address these challenges, this project implements:
 
 * Cluster-level monitoring
 * Node, pod, and namespace metrics
-* Real-time stress test visualization
+* Real-time  test visualization
 * Preconfigured Grafana dashboards
 * Scalable Helm-based deployment
 
