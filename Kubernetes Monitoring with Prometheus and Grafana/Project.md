@@ -74,7 +74,7 @@ To address these challenges, this project implements:
 
 <img width="958" height="508" alt="worker node 1and2" src="https://github.com/user-attachments/assets/a170afbc-4f85-46aa-bcbd-5e301a110811" />
 <img width="963" height="512" alt="nodes" src="https://github.com/user-attachments/assets/1ad923fb-9483-4c4e-aae9-466c569c3fa4" />
-<img width="958" height="508" alt="worker node 1and2" src="https://github.com/user-attachments/assets/b7e6cfc3-9751-42c9-be64-dd836f6056f3" />
+
 
 ---
 
