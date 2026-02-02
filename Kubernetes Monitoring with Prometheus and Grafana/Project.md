@@ -1,7 +1,4 @@
 
-
----
-
 # Project Document
 
 ## Project Title
@@ -39,7 +36,7 @@ To address these challenges, this project implements:
 * **kube-prometheus-stack** for simplified deployment and management
 * **Helm** for package management
 
-<img width="960" height="507" alt="helm repo" src="https://github.com/user-attachments/assets/4b0a86b5-6e6e-4b3d-a25b-33891211401b" />
+<img width="1536" height="1024" alt="grafana architecture" src="https://github.com/user-attachments/assets/617ba07d-5db4-46db-8e4f-bf1844824f8d" />
 
 ---
 
