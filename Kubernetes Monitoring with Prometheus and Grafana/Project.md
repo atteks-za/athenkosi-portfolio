@@ -36,7 +36,6 @@ To address these challenges, this project implements:
 * **kube-prometheus-stack** for simplified deployment and management
 * **Helm** for package management
 
-<img width="1536" height="1024" alt="grafana architecture" src="https://github.com/user-attachments/assets/617ba07d-5db4-46db-8e4f-bf1844824f8d" />
 
 ---
 
@@ -61,7 +60,8 @@ To address these challenges, this project implements:
 4. Grafana queries Prometheus for metrics
 5. Dashboards visualize real-time cluster performance
 
-![Uploading grafana architecture.png…]()
+<img width="1536" height="1024" alt="grafana architecture" src="https://github.com/user-attachments/assets/617ba07d-5db4-46db-8e4f-bf1844824f8d" />
+
 
 ---
 
