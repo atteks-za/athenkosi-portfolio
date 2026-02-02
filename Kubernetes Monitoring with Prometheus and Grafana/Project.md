@@ -112,9 +112,9 @@ To address these challenges, this project implements:
 
 ---
 
-### 6. Stress Testing & Metrics Validation
+### 6.  Testing & Metrics Validation
 
-* Run stress workloads on Kubernetes and EC2
+* Run  workloads on Kubernetes and EC2
 * Observe real-time metric changes in Grafana
 
 <img width="956" height="504" alt="ec2 stress" src="https://github.com/user-attachments/assets/036bdef3-4727-45ba-96d0-3af4166b0bc1" />
