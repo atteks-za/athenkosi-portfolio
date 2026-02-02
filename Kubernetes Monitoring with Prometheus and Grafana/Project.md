@@ -1,9 +1,6 @@
 
-# Project Document
 
-## Project Title
-
-**Kubernetes Monitoring with Prometheus and Grafana on Amazon EKS**
+##Kubernetes Monitoring with Prometheus and Grafana on Amazon EKS##
 
 ---
 
