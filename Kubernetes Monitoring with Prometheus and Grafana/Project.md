@@ -1,6 +1,5 @@
 
 
-##Kubernetes Monitoring with Prometheus and Grafana on Amazon EKS##
 
 ---
 
