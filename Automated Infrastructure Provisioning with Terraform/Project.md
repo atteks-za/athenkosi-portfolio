@@ -1,5 +1,3 @@
-Below is an **updated Project Document** with **clearly marked open spaces for screenshots**, and **NO load balancer included** (VPC + EC2 only).
-You can paste this into **`project.md`** and later insert screenshots where indicated.
 
 ---
 
@@ -16,8 +14,6 @@ You can paste this into **`project.md`** and later insert screenshots where indi
 ## 2. Introduction
 
 This project demonstrates the use of **Terraform** to automate the provisioning of AWS infrastructure. Instead of manually creating cloud resources, Infrastructure as Code (IaC) is used to define, deploy, and manage infrastructure in a consistent and repeatable way.
-
-The project focuses on deploying a **custom VPC and an EC2 instance** without using a load balancer.
 
 ---
 
@@ -61,23 +57,7 @@ All resources are provisioned and managed using Terraform configuration files.
 
 ---
 
-## 6. Architecture Design Diagram
-
-```mermaid
-flowchart TB
-    Developer --> Terraform --> AWS
-
-    subgraph AWS Cloud
-        VPC --> PublicSubnet
-        PublicSubnet --> EC2[EC2 Instance]
-        VPC --> InternetGateway
-        EC2 --> SecurityGroup
-    end
-```
-
----
-
-## 7. Terraform Configuration Files
+## 6. Terraform Configuration Files
 
 The project uses the following Terraform files:
 
@@ -183,6 +163,3 @@ This project successfully demonstrates how Terraform can be used to automate AWS
 
 ---
 
-
-
-Just tell me 👍
