@@ -1,7 +1,7 @@
 
 ---
 
-# 📄 Project 5: Automated Infrastructure Provisioning with Terraform
+# Automated Infrastructure Provisioning with Terraform
 
 ---
 
