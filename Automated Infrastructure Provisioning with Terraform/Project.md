@@ -1,23 +1,20 @@
 
----
 
-# Automated Infrastructure Provisioning with Terraform
 
 ---
 
-## 1. Project Title
 
 **Automated Infrastructure Provisioning on AWS using Terraform**
 
 ---
 
-## 2. Introduction
+## Introduction
 
 This project demonstrates the use of **Terraform** to automate the provisioning of AWS infrastructure. Instead of manually creating cloud resources, Infrastructure as Code (IaC) is used to define, deploy, and manage infrastructure in a consistent and repeatable way.
 
 ---
 
-## 3. Project Objectives
+## Project Objectives
 
 * Automate AWS infrastructure deployment using Terraform
 * Create a custom VPC and networking components
@@ -27,7 +24,7 @@ This project demonstrates the use of **Terraform** to automate the provisioning 
 
 ---
 
-## 4. Tools & Technologies
+## Tools & Technologies
 
 * Terraform
 * Amazon Web Services (AWS)
@@ -42,7 +39,7 @@ This project demonstrates the use of **Terraform** to automate the provisioning 
 
 ---
 
-## 5. Architecture Overview
+## Architecture Overview
 
 The infrastructure consists of:
 
@@ -57,7 +54,7 @@ All resources are provisioned and managed using Terraform configuration files.
 
 ---
 
-## 6. Terraform Configuration Files
+## Terraform Configuration Files
 
 The project uses the following Terraform files:
 
