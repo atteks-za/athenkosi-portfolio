@@ -111,9 +111,7 @@ terraform apply
 <img width="960" height="504" alt="vpc" src="https://github.com/user-attachments/assets/39f5ab90-3d92-4e8c-9579-e9a39ddd958c" />
 
 
----
 
-### Subnet & Internet Gateway
 
 <img width="1920" height="1008" alt="Screenshot 2026-02-03 222637" src="https://github.com/user-attachments/assets/4909686d-5f58-4174-b57b-d93371003d59" />
 
