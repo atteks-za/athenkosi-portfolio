@@ -16,5 +16,6 @@ The infrastructure includes a custom **VPC**, **public subnet**, **internet gate
 ---
 
 ## 🏗️ Architecture Design
+![Uploading ChatGPT Image Feb 8, 2026, 10_21_00 PM.png…]()
 
 
