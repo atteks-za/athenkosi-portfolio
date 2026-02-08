@@ -59,9 +59,12 @@ All resources are provisioned and managed using Terraform configuration files.
 The project uses the following Terraform files:
 
 * `provider.tf` – AWS provider configuration
-* `main.tf` – Core infrastructure resources
 * `variables.tf` – Input variables
 * `outputs.tf` – Output values
+* `instance.tf` – Defines compute resources (EC2 instances).
+* `vars.tf` – Declares input variables used across the config.
+* `vpc.tf` – Defines VPC and networking resources.
+
 
 ---
 
