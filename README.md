@@ -1,1 +1,958 @@
-# Networking Project 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Lab Network — Proxmox VE 9.1.9 | FortiGate Edition</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg:        #0d1117;
+    --surface:   #161b22;
+    --border:    #21262d;
+    --border-hi: #30363d;
+    --text:      #e6edf3;
+    --muted:     #7d8590;
+    --accent:    #f78166;   /* terminal-red — FortiGate red family */
+    --green:     #3fb950;
+    --blue:      #58a6ff;
+    --yellow:    #d29922;
+    --purple:    #a371f7;
+    --mono:      'JetBrains Mono', monospace;
+    --sans:      'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    padding: 56px 32px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: var(--mono);
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-sub {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 580px;
+    margin-bottom: 28px;
+  }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+  .badge-green  { color: var(--green);  border-color: var(--green);  background: #3fb95015; }
+  .badge-blue   { color: var(--blue);   border-color: var(--blue);   background: #58a6ff15; }
+  .badge-yellow { color: var(--yellow); border-color: var(--yellow); background: #d2992215; }
+  .badge-purple { color: var(--purple); border-color: var(--purple); background: #a371f715; }
+  .badge-red    { color: var(--accent); border-color: var(--accent); background: #f7816615; }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* ── TOPOLOGY ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .topo-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    overflow-x: auto;
+  }
+
+  .topo-block pre {
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--text);
+    white-space: pre;
+  }
+
+  .t-isp    { color: #f78166; }
+  .t-fw     { color: #ff9500; }
+  .t-router { color: #58a6ff; }
+  .t-sw     { color: #3fb950; }
+  .t-vm     { color: #a371f7; }
+  .t-dim    { color: #4a5568; }
+  .t-arrow  { color: #30363d; }
+
+  /* ── PROJECT CARDS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 620px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    cursor: pointer;
+    transition: border-color .15s, transform .15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .card-1::before { background: var(--accent); }
+  .card-2::before { background: #ff9500; }
+  .card-3::before { background: var(--blue); }
+  .card-4::before { background: var(--green); }
+
+  .card:hover {
+    border-color: var(--border-hi);
+    transform: translateY(-2px);
+  }
+
+  .card-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .card h2 {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--border);
+    color: var(--muted);
+  }
+
+  .card-vm {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-vm-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── DETAIL PANELS ── */
+  .detail {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-top: -8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .detail.open { display: block; }
+
+  .detail-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .detail-header h3 {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .detail-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color .15s, border-color .15s;
+  }
+  .detail-close:hover { color: var(--text); border-color: var(--border-hi); }
+
+  .detail-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 620px) { .detail-body { grid-template-columns: 1fr; } }
+
+  .detail-section {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .detail-section:last-child { border-right: none; }
+
+  .detail-section-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .iface-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px 12px;
+    align-items: start;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  .iface-name {
+    font-family: var(--mono);
+    color: var(--blue);
+    white-space: nowrap;
+  }
+
+  .iface-ip {
+    font-family: var(--mono);
+    color: var(--green);
+  }
+
+  .iface-desc {
+    color: var(--muted);
+    font-size: 11px;
+    grid-column: 1 / -1;
+    padding-left: 4px;
+    border-left: 2px solid var(--border);
+    margin-bottom: 4px;
+  }
+
+  .code-block {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin-top: 8px;
+  }
+
+  .code-block .comment { color: #4a5568; }
+  .code-block .keyword { color: #f78166; }
+  .code-block .value   { color: #3fb950; }
+  .code-block .ip      { color: #58a6ff; }
+
+  /* ── IP TABLE ── */
+  .ip-table-wrap { margin-bottom: 48px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  th {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #ffffff08; }
+
+  .td-mono { font-family: var(--mono); }
+  .td-green { color: var(--green); font-family: var(--mono); }
+  .td-blue  { color: var(--blue);  font-family: var(--mono); }
+  .td-muted { color: var(--muted); }
+
+  .role-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--border);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── PHASES ── */
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 700px) {
+    .phases { grid-template-columns: 1fr 1fr; }
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+
+  .phase-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .phase-title {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .phase-items {
+    list-style: none;
+  }
+
+  .phase-items li {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .phase-items li:last-child { border-bottom: none; }
+
+  .phase-items li::before {
+    content: '›';
+    color: var(--accent);
+    font-family: var(--mono);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 32px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-left {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .footer-right {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="hero">
+  <div class="hero-eyebrow">▶ Home Lab Documentation</div>
+  <h1>Proxmox VE 9.1.9<br><span>FortiGate</span> Network Lab</h1>
+  <p class="hero-sub">
+    Enterprise-grade network simulation running on Proxmox VE. ISP simulation, FortiGate perimeter security, Cisco inter-VLAN routing, and Layer 2 VLAN segmentation — all virtualised.
+  </p>
+  <div class="badge-row">
+    <span class="badge badge-red">FortiOS</span>
+    <span class="badge badge-blue">Cisco IOS-XE</span>
+    <span class="badge badge-green">vIOS-L2</span>
+    <span class="badge badge-yellow">Proxmox VE</span>
+    <span class="badge badge-purple">Splunk SIEM</span>
+    <span class="badge badge-blue">802.1Q</span>
+    <span class="badge badge-green">NAT / PAT</span>
+    <span class="badge badge-red">DHCP</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════ TOPOLOGY ═══════════ -->
+  <div class="section-label">// Network Topology</div>
+  <div class="topo-block">
+<pre>
+  <span class="t-dim">┌─────────────────────────────────────────────────────────────┐</span>
+  <span class="t-dim">│</span>                      PROXMOX VE 9.1.9                       <span class="t-dim">│</span>
+  <span class="t-dim">│</span>                                                             <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   Internet (vmbr0 — DHCP)                                   <span class="t-dim">│</span>
+  <span class="t-dim">│</span>         │                                                   <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   <span class="t-isp">[ VM 104 · CSR-ISP ]</span>  192.168.8.39 ← DHCP               <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     GE1 ↑ WAN    GE2 ↓ LAN  203.0.113.1/30   Lo0 1.1.1.1  <span class="t-dim">│</span>
+  <span class="t-dim">│</span>                       │ vmbr1                              <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   <span class="t-fw">[ VM 100 · FortiGate-FW-HQ ]</span>                             <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     port1 (WAN) 203.0.113.2/30                             <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     port2 (LAN) 10.0.0.1/24                               <span class="t-dim">│</span>
+  <span class="t-dim">│</span>                       │ vmbr2                              <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   <span class="t-router">[ VM 107 · CSR-HQ-01 ]</span>  Gi1 10.0.0.2/24                 <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     Gi2.10  10.10.10.1/24  VLAN 10 — Management            <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     Gi2.20  10.20.20.1/24  VLAN 20 — Servers               <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     Gi2.30  10.30.30.1/24  VLAN 30 — Users                 <span class="t-dim">│</span>
+  <span class="t-dim">│</span>                       │ vmbr3 (802.1Q Trunk)               <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   <span class="t-sw">[ VM 106 · SW-HQ-01 ]</span>   Gi0/0 Trunk                     <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     │ Gi0/3 VLAN10      │ Gi0/2 VLAN20      │ Gi0/1 VLAN30 <span class="t-dim">│</span>
+  <span class="t-dim">│</span>     │ vmbr4             │ vmbr5             │ vmbr6         <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   <span class="t-vm">[ VM 102 ]</span>       <span class="t-vm">[ VM 101 ]</span>  <span class="t-vm">[ VM 105 ]</span>  <span class="t-vm">[ VM 103 ]</span>  <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   LabControl       Splunk         ADNS       DockerHost     <span class="t-dim">│</span>
+  <span class="t-dim">│</span>   10.10.10.x       10.20.20.x  10.20.20.100  10.30.30.x    <span class="t-dim">│</span>
+  <span class="t-dim">└─────────────────────────────────────────────────────────────┘</span>
+</pre>
+  </div>
+
+  <!-- ═══════════ PROJECT CARDS ═══════════ -->
+  <div class="section-label">// Projects — Click to expand</div>
+  <div class="projects-grid">
+
+    <!-- CARD 1 -->
+    <div class="card card-1" onclick="toggle(1)">
+      <div class="card-num">PROJECT 01 · VM 104</div>
+      <h2>ISP Router Simulation<br>with NAT</h2>
+      <p class="card-desc">Simulates an ISP edge router using Cisco IOS-XE CSR1000v. WAN uplink via DHCP, NAT overload, and a loopback simulating a public IP.</p>
+      <div class="card-tags">
+        <span class="tag">CSR1000v</span>
+        <span class="tag">NAT Overload</span>
+        <span class="tag">Static Routes</span>
+        <span class="tag">vmbr0 / vmbr1</span>
+      </div>
+      <div class="card-vm">
+        <span class="card-vm-dot" style="background:#f78166"></span>
+        CSR-ISP · Cisco IOS-XE
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card card-2" onclick="toggle(2)">
+      <div class="card-num">PROJECT 02 · VM 100</div>
+      <h2>FortiGate Edge Firewall<br>& Policy Routing</h2>
+      <p class="card-desc">FortiGate VM as perimeter firewall. Covers WAN/LAN interfaces, per-VLAN static routes, NAT policies, and DNS configuration.</p>
+      <div class="card-tags">
+        <span class="tag">FortiOS</span>
+        <span class="tag">Firewall Policy</span>
+        <span class="tag">Static Routing</span>
+        <span class="tag">NAT</span>
+      </div>
+      <div class="card-vm">
+        <span class="card-vm-dot" style="background:#ff9500"></span>
+        FortiGate-FW-HQ · FortiOS
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card card-3" onclick="toggle(3)">
+      <div class="card-num">PROJECT 03 · VM 107</div>
+      <h2>Inter-VLAN Routing<br>& DHCP — CSR-HQ-01</h2>
+      <p class="card-desc">HQ core router with 802.1Q subinterfaces for inter-VLAN routing. Acts as DHCP server for VLANs 10, 20, and 30 with NAT toward FortiGate.</p>
+      <div class="card-tags">
+        <span class="tag">CSR1000v</span>
+        <span class="tag">Router-on-a-Stick</span>
+        <span class="tag">DHCP Server</span>
+        <span class="tag">802.1Q</span>
+      </div>
+      <div class="card-vm">
+        <span class="card-vm-dot" style="background:#58a6ff"></span>
+        CSR-HQ-01 · Cisco IOS-XE
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card card-4" onclick="toggle(4)">
+      <div class="card-num">PROJECT 04 · VM 106</div>
+      <h2>VLAN Segmentation<br>with Cisco vIOS-L2</h2>
+      <p class="card-desc">Layer 2 distribution switch with 802.1Q trunk uplink and three access port VLANs. Management SVI on VLAN 10 for out-of-band access.</p>
+      <div class="card-tags">
+        <span class="tag">vIOS-L2</span>
+        <span class="tag">802.1Q Trunk</span>
+        <span class="tag">Access Ports</span>
+        <span class="tag">SVI</span>
+      </div>
+      <div class="card-vm">
+        <span class="card-vm-dot" style="background:#3fb950"></span>
+        SW-HQ-01 · Cisco vIOS-L2
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DETAIL PANELS ═══════════ -->
+
+  <!-- DETAIL 1 -->
+  <div class="detail" id="detail-1">
+    <div class="detail-header">
+      <h3>CSR-ISP — Full Configuration Detail</h3>
+      <button class="detail-close" onclick="toggle(1)">✕ Close</button>
+    </div>
+    <div class="detail-body">
+      <div class="detail-section">
+        <div class="detail-section-title">Interfaces</div>
+        <div class="iface-row">
+          <span class="iface-name">GigabitEthernet1</span>
+          <span class="iface-ip">DHCP → 192.168.8.39</span>
+        </div>
+        <div class="iface-row"><span class="iface-desc">WAN — Internet uplink from Proxmox. NAT outside.</span></div>
+        <div class="iface-row">
+          <span class="iface-name">GigabitEthernet2</span>
+          <span class="iface-ip">203.0.113.1/30</span>
+        </div>
+        <div class="iface-row"><span class="iface-desc">LAN — P2P link to FortiGate port1. NAT inside.</span></div>
+        <div class="iface-row">
+          <span class="iface-name">Loopback0</span>
+          <span class="iface-ip">1.1.1.1/32</span>
+        </div>
+        <div class="iface-row"><span class="iface-desc">Simulated public IP for BGP/traceroute testing.</span></div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Key Config Snippets</div>
+        <div class="code-block">
+<span class="comment">! NAT overload (PAT)</span>
+<span class="keyword">access-list</span> <span class="value">1</span> permit <span class="ip">203.0.113.0</span> 0.0.0.3
+<span class="keyword">access-list</span> <span class="value">1</span> permit <span class="ip">10.0.0.0</span> 0.255.255.255
+<span class="keyword">ip nat</span> inside source list <span class="value">1</span>
+  interface GigabitEthernet1 overload
+
+<span class="comment">! Return route for internal nets</span>
+<span class="keyword">ip route</span> <span class="ip">10.0.0.0</span> 255.0.0.0 <span class="ip">203.0.113.2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL 2 -->
+  <div class="detail" id="detail-2">
+    <div class="detail-header">
+      <h3>FortiGate-FW-HQ — Full Configuration Detail</h3>
+      <button class="detail-close" onclick="toggle(2)">✕ Close</button>
+    </div>
+    <div class="detail-body">
+      <div class="detail-section">
+        <div class="detail-section-title">Policies</div>
+        <div style="font-size:12px; margin-bottom:10px;">
+          <div style="display:flex; gap:8px; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);">
+            <span style="font-family:var(--mono);color:var(--green);">●</span>
+            <span style="font-family:var(--mono);color:var(--text);">LAN-to-WAN</span>
+            <span style="color:var(--muted);font-size:11px;">port2 → port1 · ACCEPT + NAT</span>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);">
+            <span style="font-family:var(--mono);color:var(--yellow);">●</span>
+            <span style="font-family:var(--mono);color:var(--text);">WAN-to-LAN</span>
+            <span style="color:var(--muted);font-size:11px;">port1 → port2 · ACCEPT</span>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center; padding:6px 0;">
+            <span style="font-family:var(--mono);color:var(--blue);">●</span>
+            <span style="font-family:var(--mono);color:var(--text);">Inter-VLAN</span>
+            <span style="color:var(--muted);font-size:11px;">port2 → port2 · ACCEPT</span>
+          </div>
+        </div>
+        <div class="detail-section-title" style="margin-top:16px;">Static Routes</div>
+        <div style="font-size:12px;">
+          <div style="font-family:var(--mono); padding:4px 0; color:var(--muted);">0.0.0.0/0 → <span style="color:var(--green)">203.0.113.1</span> <span style="color:var(--muted)">via port1</span></div>
+          <div style="font-family:var(--mono); padding:4px 0; color:var(--muted);">10.10.10.0/24 → <span style="color:var(--green)">10.0.0.2</span> <span style="color:var(--muted)">via port2</span></div>
+          <div style="font-family:var(--mono); padding:4px 0; color:var(--muted);">10.20.20.0/24 → <span style="color:var(--green)">10.0.0.2</span> <span style="color:var(--muted)">via port2</span></div>
+          <div style="font-family:var(--mono); padding:4px 0; color:var(--muted);">10.30.30.0/24 → <span style="color:var(--green)">10.0.0.2</span> <span style="color:var(--muted)">via port2</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Key Config Snippets</div>
+        <div class="code-block">
+<span class="comment"># Default route to ISP</span>
+<span class="keyword">config</span> router static
+  edit <span class="value">1</span>
+    set dst <span class="ip">0.0.0.0 0.0.0.0</span>
+    set gateway <span class="ip">203.0.113.1</span>
+    set device port1
+  next
+end
+
+<span class="comment"># LAN-to-WAN with NAT</span>
+<span class="keyword">config</span> firewall policy
+  edit <span class="value">1</span>
+    set name <span class="value">"LAN-to-WAN"</span>
+    set srcintf <span class="value">"port2"</span>
+    set dstintf <span class="value">"port1"</span>
+    set action accept
+    set nat enable
+  next
+end
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL 3 -->
+  <div class="detail" id="detail-3">
+    <div class="detail-header">
+      <h3>CSR-HQ-01 — Full Configuration Detail</h3>
+      <button class="detail-close" onclick="toggle(3)">✕ Close</button>
+    </div>
+    <div class="detail-body">
+      <div class="detail-section">
+        <div class="detail-section-title">DHCP Pools</div>
+        <div style="font-size:12px;">
+          <div style="padding:8px 0; border-bottom:1px solid var(--border);">
+            <span style="font-family:var(--mono);color:var(--blue);">VLAN10-Management</span><br>
+            <span style="color:var(--muted);">10.10.10.11–199 · GW 10.10.10.1 · Lease 1d</span>
+          </div>
+          <div style="padding:8px 0; border-bottom:1px solid var(--border);">
+            <span style="font-family:var(--mono);color:var(--blue);">VLAN20-Servers</span><br>
+            <span style="color:var(--muted);">10.20.20.11–199 · GW 10.20.20.1 · Lease 1d</span>
+          </div>
+          <div style="padding:8px 0;">
+            <span style="font-family:var(--mono);color:var(--blue);">VLAN30-Users</span><br>
+            <span style="color:var(--muted);">10.30.30.11–199 · GW 10.30.30.1 · Lease 1d</span>
+          </div>
+        </div>
+        <div class="detail-section-title" style="margin-top:16px;">DNS for all pools</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--muted);">
+          Primary: <span style="color:var(--green)">8.8.8.8</span><br>
+          Secondary: <span style="color:var(--green)">10.20.20.100</span> (ADNS VM)
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Key Config Snippets</div>
+        <div class="code-block">
+<span class="comment">! 802.1Q subinterface — VLAN 10</span>
+<span class="keyword">interface</span> GigabitEthernet2.10
+ encapsulation dot1Q <span class="value">10</span>
+ ip address <span class="ip">10.10.10.1</span> 255.255.255.0
+ ip nat inside
+
+<span class="comment">! DHCP pool — VLAN 10</span>
+<span class="keyword">ip dhcp pool</span> VLAN10-Management
+ network <span class="ip">10.10.10.0</span> 255.255.255.0
+ default-router <span class="ip">10.10.10.1</span>
+ dns-server <span class="ip">8.8.8.8 10.20.20.100</span>
+ lease <span class="value">1</span>
+
+<span class="comment">! NAT overload for all VLANs</span>
+<span class="keyword">ip nat</span> inside source list NAT_ACL
+  interface GigabitEthernet1 overload
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL 4 -->
+  <div class="detail" id="detail-4">
+    <div class="detail-header">
+      <h3>SW-HQ-01 — Full Configuration Detail</h3>
+      <button class="detail-close" onclick="toggle(4)">✕ Close</button>
+    </div>
+    <div class="detail-body">
+      <div class="detail-section">
+        <div class="detail-section-title">VLAN &amp; Port Map</div>
+        <div style="font-size:12px;">
+          <div style="display:grid;grid-template-columns:60px 80px 1fr;gap:4px 12px;font-family:var(--mono);padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--muted);margin-bottom:8px;">
+            <span>VLAN</span><span>Port</span><span>VMs</span>
+          </div>
+          <div style="display:grid;grid-template-columns:60px 80px 1fr;gap:4px 12px;font-family:var(--mono);padding:4px 0;border-bottom:1px solid var(--border);">
+            <span style="color:var(--accent)">10</span><span style="color:var(--muted)">Gi0/3</span><span style="color:var(--text)">LabControl</span>
+          </div>
+          <div style="display:grid;grid-template-columns:60px 80px 1fr;gap:4px 12px;font-family:var(--mono);padding:4px 0;border-bottom:1px solid var(--border);">
+            <span style="color:var(--blue)">20</span><span style="color:var(--muted)">Gi0/2</span><span style="color:var(--text)">Splunk, ADNS</span>
+          </div>
+          <div style="display:grid;grid-template-columns:60px 80px 1fr;gap:4px 12px;font-family:var(--mono);padding:4px 0;">
+            <span style="color:var(--green)">30</span><span style="color:var(--muted)">Gi0/1</span><span style="color:var(--text)">DockerHost</span>
+          </div>
+        </div>
+        <div class="detail-section-title" style="margin-top:16px;">Management SVI</div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--muted);">
+          Vlan10 SVI: <span style="color:var(--green)">10.10.10.2/24</span><br>
+          Default GW: <span style="color:var(--green)">10.10.10.1</span>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Key Config Snippets</div>
+        <div class="code-block">
+<span class="comment">! 802.1Q trunk to CSR-HQ-01</span>
+<span class="keyword">interface</span> GigabitEthernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan <span class="value">10,20,30</span>
+
+<span class="comment">! Access port — VLAN 20 Servers</span>
+<span class="keyword">interface</span> GigabitEthernet0/2
+ switchport mode access
+ switchport access vlan <span class="value">20</span>
+
+<span class="comment">! Management SVI</span>
+<span class="keyword">interface</span> Vlan10
+ ip address <span class="ip">10.10.10.2</span> 255.255.255.0
+<span class="keyword">ip</span> default-gateway <span class="ip">10.10.10.1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ IP TABLE ═══════════ -->
+  <div class="section-label">// Complete IP Address Reference</div>
+  <div class="ip-table-wrap">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+      <table>
+        <thead>
+          <tr>
+            <th>Device</th>
+            <th>Interface</th>
+            <th>IP Address</th>
+            <th>Subnet</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-mono" style="color:var(--accent)">CSR-ISP</td>
+            <td class="td-mono td-muted">Gi1</td>
+            <td class="td-green">192.168.8.39</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">WAN Uplink</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--accent)">CSR-ISP</td>
+            <td class="td-mono td-muted">Gi2</td>
+            <td class="td-green">203.0.113.1</td>
+            <td class="td-mono td-muted">/30</td>
+            <td><span class="role-pill">ISP→FW Link</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--accent)">CSR-ISP</td>
+            <td class="td-mono td-muted">Lo0</td>
+            <td class="td-green">1.1.1.1</td>
+            <td class="td-mono td-muted">/32</td>
+            <td><span class="role-pill">Simulated Public IP</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:#ff9500">FortiGate</td>
+            <td class="td-mono td-muted">port1</td>
+            <td class="td-green">203.0.113.2</td>
+            <td class="td-mono td-muted">/30</td>
+            <td><span class="role-pill">WAN (to ISP)</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:#ff9500">FortiGate</td>
+            <td class="td-mono td-muted">port2</td>
+            <td class="td-green">10.0.0.1</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">LAN Gateway</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--blue)">CSR-HQ-01</td>
+            <td class="td-mono td-muted">Gi1</td>
+            <td class="td-green">10.0.0.2</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">Uplink to FW</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--blue)">CSR-HQ-01</td>
+            <td class="td-mono td-muted">Gi2.10</td>
+            <td class="td-green">10.10.10.1</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">VLAN 10 GW</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--blue)">CSR-HQ-01</td>
+            <td class="td-mono td-muted">Gi2.20</td>
+            <td class="td-green">10.20.20.1</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">VLAN 20 GW</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--blue)">CSR-HQ-01</td>
+            <td class="td-mono td-muted">Gi2.30</td>
+            <td class="td-green">10.30.30.1</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">VLAN 30 GW</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--green)">SW-HQ-01</td>
+            <td class="td-mono td-muted">Vlan10</td>
+            <td class="td-green">10.10.10.2</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">Mgmt SVI</span></td>
+          </tr>
+          <tr>
+            <td class="td-mono" style="color:var(--purple)">ADNS</td>
+            <td class="td-mono td-muted">eth0</td>
+            <td class="td-green">10.20.20.100</td>
+            <td class="td-mono td-muted">/24</td>
+            <td><span class="role-pill">Internal DNS</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════ PHASES ═══════════ -->
+  <div class="section-label">// Lab Expansion Roadmap</div>
+  <div class="phases">
+    <div class="phase-card">
+      <div class="phase-num">PHASE 2</div>
+      <div class="phase-title">Routing Protocols</div>
+      <ul class="phase-items">
+        <li>OSPF — replace statics</li>
+        <li>BGP — ISP peering sim</li>
+        <li>Route redistribution</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">PHASE 3</div>
+      <div class="phase-title">Security</div>
+      <ul class="phase-items">
+        <li>ACLs — inter-VLAN</li>
+        <li>FortiGate IDS/IPS</li>
+        <li>IPSec / SSL VPN</li>
+        <li>FortiAnalyzer</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">PHASE 4</div>
+      <div class="phase-title">Automation</div>
+      <ul class="phase-items">
+        <li>Ansible playbooks</li>
+        <li>Python Netmiko</li>
+        <li>Config backups</li>
+        <li>Firmware updates</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">PHASE 5</div>
+      <div class="phase-title">Monitoring</div>
+      <ul class="phase-items">
+        <li>Syslog → Splunk</li>
+        <li>SNMP polling</li>
+        <li>BGP/OSPF dashboards</li>
+        <li>Interface alerts</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="footer">
+  <div class="footer-left">Proxmox VE 9.1.9 · FortiGate Edition · June 2026</div>
+  <div class="footer-right">Prepared for Wavenet Network Engineer Role</div>
+</div>
+
+<script>
+  function toggle(n) {
+    const detail = document.getElementById('detail-' + n);
+    const isOpen = detail.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.detail').forEach(d => d.classList.remove('open'));
+
+    // Open clicked one unless it was already open
+    if (!isOpen) detail.classList.add('open');
+  }
+</script>
+</body>
+</html>
