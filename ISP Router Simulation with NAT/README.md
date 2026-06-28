@@ -133,12 +133,4 @@ Loopback0          1.1.1.1        YES manual  up  up
    - `net1` → `vmbr1` (LAN — shared with FortiGate port1)
 3. Boot and apply config above via console
 
----
 
-## Related Projects
-
-| # | Project | Description |
-|---|---------|-------------|
-| 2 | [FortiGate Edge Firewall](../2-fortigate-edge-fw) | Edge firewall connecting to this ISP router |
-| 3 | [Inter-VLAN Routing & DHCP](../3-inter-vlan-dhcp) | HQ core router behind FortiGate |
-| 4 | [VLAN Segmentation vIOS-L2](../4-vlan-segmentation-vios-l2) | Layer 2 switching and VLAN segmentation |
