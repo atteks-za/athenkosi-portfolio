@@ -1,9 +1,8 @@
 
-
 <!-- ═══════════ HERO ═══════════ -->
 <div class="hero">
   <div class="hero-eyebrow">▶ Home Lab Documentation</div>
-  <h1>Proxmox VE 9.1.9<br><span>FortiGate</span> Network Lab</h1>
+  <h1>Proxmox VE 9.1.9</span> Network Lab</h1>
   <p class="hero-sub">
     Enterprise-grade network simulation running on Proxmox VE. ISP simulation, FortiGate perimeter security, Cisco inter-VLAN routing, and Layer 2 VLAN segmentation — all virtualised.
   </p>
