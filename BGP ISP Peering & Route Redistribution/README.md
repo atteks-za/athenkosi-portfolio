@@ -1,9 +1,6 @@
 # BGP Configuration Documentation
 ## Home Lab — Phase 2b: Border Gateway Protocol
 
-**Date:** June 2026  
-**Environment:** Proxmox VE 9.1.9  
-**Devices:** CSR-ISP (AS 65000) ↔ FortiGate (AS 65001)
 
 ---
 
@@ -183,13 +180,4 @@ VLANs 10/20/30
 
 ---
 
-## 9. Next Step — Phase 3: Security
 
-| Task | Device | Description |
-|---|---|---|
-| ACLs | CSR-HQ-01 | Restrict inter-VLAN traffic |
-| IPS Profiles | FortiGate | Enable intrusion prevention |
-| IPSec VPN | FortiGate | Site-to-site tunnel |
-| SSL VPN | FortiGate | Remote access VPN |
-| FortiGate Policies | FortiGate | Zone-based firewall rules |
-| Syslog to Splunk | All devices | Forward logs to Splunk VM |
