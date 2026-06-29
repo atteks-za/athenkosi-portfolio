@@ -1,10 +1,5 @@
 # OSPF Configuration Documentation
 ## Home Lab — Phase 2 Routing Protocols
-
-**Date:** June 2026  
-**Environment:** Proxmox VE 9.1.9  
-**Devices:** FortiGate FW-HQ-01 ↔ CiscoCSR-HQ-01
-
 ---
 
 ## 1. OSPF Design
@@ -162,7 +157,7 @@ O   10.30.30.0/24 via 10.0.0.2 port2
 | Issue | Cause | Workaround |
 |---|---|---|
 | 0.0.0.0/0 not propagating via OSPF | FortiGate OSPF default-info not exporting | Keep static default on CSR-HQ-01 |
-| OSPF config lost on reboot | CSR1000v NVRAM issue | Re-apply after boot or use EEM |
+
 
 ---
 
