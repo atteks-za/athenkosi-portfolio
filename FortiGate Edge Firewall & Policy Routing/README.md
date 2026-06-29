@@ -179,23 +179,6 @@ Policy 3 allows traffic between VLANs to pass through port2 (hairpin). This is r
    - `net1` → `vmbr2` (LAN — shared bridge with CSR-HQ-01 Gi1)
 3. License FortiOS and apply config above
 
----
-
-## Phase 3 Expansion — Security Hardening
-
-| Task | Description |
-|------|-------------|
-| IDS/IPS | Enable FortiGate IPS profiles on LAN-to-WAN |
-| VPN | Configure IPSec/SSL VPN tunnels |
-| FortiAnalyzer | Add VM for centralized log analytics |
-| Refined Policies | Replace `all` source/dest with address objects |
 
 ---
 
-## Related Projects
-
-| # | Project | Description |
-|---|---------|-------------|
-| 1 | [ISP Router Simulation](../1-isp-router-nat) | Upstream ISP router this firewall connects to |
-| 3 | [Inter-VLAN Routing & DHCP](../3-inter-vlan-dhcp) | HQ core router on the LAN side |
-| 4 | [VLAN Segmentation vIOS-L2](../4-vlan-segmentation-vios-l2) | Layer 2 switching downstream |
