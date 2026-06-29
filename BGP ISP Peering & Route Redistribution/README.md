@@ -1,5 +1,5 @@
 # BGP Configuration Documentation
-## Home Lab — Phase 2b: Border Gateway Protocol
+## Border Gateway Protocol
 
 
 ---
