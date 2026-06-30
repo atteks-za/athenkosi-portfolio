@@ -1,6 +1,6 @@
 # Inter-VLAN Routing & DHCP — Cisco CSR-HQ-01
 
-> **Home Lab Series** | Proxmox VE 9.1.9 | Part 3 of 4
+
 
 Configures a Cisco IOS-XE CSR1000v as the HQ core router. Provides inter-VLAN routing via 802.1Q subinterfaces, DHCP services for three VLANs, NAT overload toward FortiGate, and a default route for internet access.
 
@@ -208,20 +208,5 @@ CSR-HQ-01# ping 8.8.8.8    -> 100% (Internet via FortiGate + ISP)
 
 ---
 
-## Phase 2 Expansion — Routing Protocols
 
-| Task | Description |
-|------|-------------|
-| OSPF | Replace static default route with OSPF toward FortiGate |
-| Route Redistribution | Redistribute OSPF into BGP (via CSR-ISP) |
-| ACLs | Add inter-VLAN ACLs to restrict traffic (Phase 3) |
 
----
-
-## Related Projects
-
-| # | Project | Description |
-|---|---------|-------------|
-| 1 | [ISP Router Simulation](../1-isp-router-nat) | Upstream ISP router |
-| 2 | [FortiGate Edge Firewall](../2-fortigate-edge-fw) | Firewall this router connects to |
-| 4 | [VLAN Segmentation vIOS-L2](../4-vlan-segmentation-vios-l2) | Downstream switch receiving the trunk |
