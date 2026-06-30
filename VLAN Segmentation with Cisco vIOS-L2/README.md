@@ -201,10 +201,3 @@ VLAN  Name        Status    Ports
 
 ---
 
-## Related Projects
-
-| # | Project | Description |
-|---|---------|-------------|
-| 1 | [ISP Router Simulation](../1-isp-router-nat) | Upstream ISP router |
-| 2 | [FortiGate Edge Firewall](../2-fortigate-edge-fw) | Edge firewall |
-| 3 | [Inter-VLAN Routing & DHCP](../3-inter-vlan-dhcp) | Core router this switch trunks to |
