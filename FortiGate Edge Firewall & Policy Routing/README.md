@@ -1,6 +1,6 @@
 # FortiGate Edge Firewall & Policy Routing — VM 100
 
-> **Home Lab Series** | Proxmox VE 9.1.9 | Part 2 of 4
+
 
 Deploys a FortiGate VM as the primary edge firewall and gateway for the home lab. Covers WAN/LAN interface configuration, static routing to internal VLANs, firewall policies with NAT, and DNS settings.
 
