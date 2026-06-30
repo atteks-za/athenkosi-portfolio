@@ -1,6 +1,5 @@
 # VLAN Segmentation with Cisco vIOS-L2 — SW-HQ-01
 
-> **Home Lab Series** | Proxmox VE 9.1.9 | Part 4 of 4
 
 Configures a Cisco vIOS-L2 virtual switch as the Layer 2 distribution switch for the home lab. Implements 802.1Q trunking toward the HQ core router, access port segmentation into three VLANs, and a management SVI.
 
