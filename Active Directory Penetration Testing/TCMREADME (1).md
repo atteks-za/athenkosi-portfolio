@@ -52,7 +52,8 @@ Get-NetUser
 ## Phase 2 – Password Policy Enumeration
 
 **Tool:** PowerShell  
-**Screenshot:** `Password_Policy.png`
+![Uploading Password Policy.png…]()
+
 
 ```powershell
 (Get-DomainPolicy)."systemaccess"
