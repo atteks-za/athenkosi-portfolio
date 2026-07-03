@@ -1,5 +1,4 @@
 # Active Directory Penetration Testing 
-### TCM Security – Practical Junior Penetration Tester (PJPT) Course
 **Domain:** `pepstcm.co.za` | **DC:** `TCM-DC01` (192.168.88.138)
 
 ---
