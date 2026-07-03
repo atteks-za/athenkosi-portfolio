@@ -52,7 +52,8 @@ Get-NetUser
 ## Phase 2 – Password Policy Enumeration
 
 **Tool:** PowerShell  
-![Uploading Password Policy.png…]()
+<img width="1920" height="1080" alt="Password Policy" src="https://github.com/user-attachments/assets/b94da267-b078-408e-a7d5-05a0c8e31ca8" />
+
 
 
 ```powershell
