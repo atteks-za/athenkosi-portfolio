@@ -102,7 +102,7 @@ ntlmrelayx.py -6 -t ldaps://192.168.88.138 -wh fakewpad -l lootme
 ```
 > ⚠️ **Critical Finding:** Attacker created a domain user with **DCSync privileges** via NTLM relay.
 
-**Domain User Confirmed:** `HgaRqRLoyJ` visible in Active Directory Users and Computers — <img width="1920" height="1080" alt="AD Account created" src="https://github.com/user-attachments/assets/22f79de1-3bf9-4e7a-9b08-b210bb045315" />
+**Domain User Confirmed:** `HgaRqRLoyJ` visible in Active Directory Users and Computers <img width="1920" height="1080" alt="AD Account created" src="https://github.com/user-attachments/assets/22f79de1-3bf9-4e7a-9b08-b210bb045315" />
 
 
 ---
