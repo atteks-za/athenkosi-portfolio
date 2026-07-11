@@ -25,7 +25,6 @@ Route-based (interface-mode) IPsec VPN between two FortiGate firewalls, connecti
 
 | | HQ (FW-HQ-01) | Branch (FW-BR-01) |
 |---|---|---|
-| FortiOS version | 8.0.0 | 8.0.0 |
 | WAN (port1) IP | 192.168.8.20 | 192.168.8.50 |
 | LAN (port2) subnet | 10.0.0.0/24 | 172.16.0.0/24 |
 | VLAN 10 | 10.10.10.0/24 | — |
