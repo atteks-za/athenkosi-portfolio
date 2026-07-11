@@ -6,7 +6,7 @@ Route-based (interface-mode) IPsec VPN between two FortiGate firewalls, connecti
 
 ```
         HQ (FW-HQ-01)                              Branch (FW-BR-01)
-        FortiOS 8.0.0                               FortiOS 8.0.0
+                                      
    ┌─────────────────────┐                    ┌─────────────────────┐
    │  LAN (port2)         │                   │  LAN (port2)         │
    │  10.0.0.0/24         │                   │  172.16.0.0/24       │
@@ -49,7 +49,7 @@ Route-based (interface-mode) IPsec VPN between two FortiGate firewalls, connecti
 | Diffie-Hellman group | 14 |
 | Key lifetime | 86400 seconds |
 
-> ⚠️ **Note on cipher choice:** DES is a legacy/weak cipher shown here as configured in this lab environment. For production deployments, use AES-based encryption (e.g. AES256-SHA256) instead of DES.
+
 
 Tunnel status confirmed **Up** on both ends via `VPN > IPsec Tunnels`.
 
@@ -60,7 +60,7 @@ Tunnel status confirmed **Up** on both ends via `VPN > IPsec Tunnels`.
 | Local Address | 0.0.0.0/0.0.0.0 | 0.0.0.0/0.0.0.0 |
 | Remote Address | 0.0.0.0/0.0.0.0 | 0.0.0.0/0.0.0.0 |
 
-Selectors were widened from narrow per-subnet pairs to **0.0.0.0/0 ↔ 0.0.0.0/0** so that all HQ VLANs (not just the original 10.0.0.0/24) can traverse the tunnel. With narrow selectors, VLAN traffic destined for Branch (or vice versa) was silently dropped before encryption ("no matching IPsec selector").
+Selectors were widened from narrow per-subnet pairs to **0.0.0.0/0 ↔ 0.0.0.0/0** so that all HQ VLANs (not just the  10.0.0.0/24) can traverse the tunnel. With narrow selectors, VLAN traffic destined for Branch (or vice versa) was silently dropped before encryption ("no matching IPsec selector").
 
 Traffic scoping is instead handled by:
 - **Static routes** (which subnets go through the tunnel)
@@ -125,7 +125,6 @@ IPsec dashboard (Branch) confirmed:
 ## Design Decisions / Lessons Learned
 
 1. **Phase 2 selectors must be wide enough to cover all routed subnets.** Narrow selectors matching only the original LAN pair silently dropped VLAN traffic even though routing and firewall policy were otherwise correct.
-2. **A misrouted static route (wrong destination subnet) on HQ was the original root cause** of one-way ping failure — traffic reached Branch, but replies were routed out the wrong interface instead of back through the tunnel.
 3. **OSPF over IPsec was attempted and reverted.** Static unicast neighbor configuration isn't supported with `network-type point-to-point`, and switching to `point-to-multipoint` plus static neighbors still didn't resolve hello packets being sent but never received on either side — suspected multicast-over-IPsec limitation. Static routing was used as the reliable, working alternative.
 4. **Route count limits matter at scale.** A single summarized route (10.0.0.0/8) is more maintainable and avoids hitting per-device static route limits compared to one entry per VLAN.
 5. **Firewall policies set to `all`/`all`** avoid needing a policy update every time a new VLAN is added at HQ — only a routing change is needed for new subnets, not a firewall change.
