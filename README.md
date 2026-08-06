@@ -1,4 +1,4 @@
-# Veeam Backup & Replication Home 
+# Veeam Backup & Replication 
 
 A  project documenting the deployment of **Veeam Backup & Replication (Community Edition)** on a VMware **ESXi** host, and the configuration of a complete backup strategy covering both **virtual machines** and **standalone server**.
 
