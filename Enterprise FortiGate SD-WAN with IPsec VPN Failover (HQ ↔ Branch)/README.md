@@ -1,8 +1,7 @@
 # Enterprise FortiGate SD-WAN with IPsec VPN Failover (HQ ↔ Branch)
 
 A home-lab build simulating a two-site enterprise network with dual-WAN SD-WAN
-failover over site-to-site IPsec VPN, built on FortiGate VMs (ESXi, Proxmox VE,
-and Hyper-V) with MikroTik CHR routers acting as simulated ISPs.
+failover over site-to-site IPsec VPN, built on FortiGate VMs (ESXi and Proxmox VE) with Mikrotik routers acting as simulated ISPs.
 
 ## Topology
 
@@ -54,7 +53,7 @@ quirks (vSwitch/bridge config, disk formats, boot firmware).
 
 ## Build Steps
 
-### 1. Deploy MikroTik CHR "ISP" routers (one per site)
+### 1. Deploy MikroTik RouterOS "ISP" routers (one per site)
 - WAN interface on the shared 192.168.8.0/24 segment, static IP, gateway 192.168.8.1
 - LAN interface on the site's dedicated WAN2 subnet (no NAT — direct routing)
 - Static route added so each ISP MikroTik can reach the other sites' WAN2
@@ -99,7 +98,7 @@ This lab runs on a **single home internet connection**, so every site's
 WAN1 interface (192.168.8.20/.50/.60) sits on the *same* physical LAN
 segment behind the *same* home router and the *same* real public IP.
 There is no genuine path diversity between "WAN1" and "WAN2" at the
-physical/internet layer — both simulated ISPs (the MikroTik CHRs) ultimately
+physical/internet layer — both simulated ISPs (the MikroTik Routeros) ultimately
 share the identical uplink back out to the real internet.
 
 This has a direct, visible consequence in the Performance SLA statistics:
@@ -117,7 +116,7 @@ of the shared home router would take down *both* simulated WAN paths
 simultaneously, since they're not actually independent. The topology,
 tunnel configuration, SD-WAN rule logic, and failover mechanics are all
 built and tested exactly as they would be in production — only the
-underlying physical internet diversity is simulated/collapsed for lab
+underlying physical internet diversity is simulated for lab
 purposes.
 
 ### Trial license constraints
