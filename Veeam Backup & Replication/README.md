@@ -1,6 +1,6 @@
-# Veeam Backup & Replication Home Lab
+# Veeam Backup & Replication 
 
-A home-lab project documenting the deployment of **Veeam Backup & Replication (Community Edition)** on a VMware **ESXi** host, and the configuration of a complete backup strategy covering both **virtual machines** and **physical/standalone servers**.
+A  project documenting the deployment of **Veeam Backup & Replication (Community Edition)** on a VMware **ESXi** host, and the configuration of a complete backup strategy covering both **virtual machines** and **standalone server**.
 
 ## Overview
 
@@ -88,36 +88,3 @@ Configured for a physical server discovered under **Inventory > Physical Infrast
 - **Bottleneck:** Network
 - **Errors/Warnings:** 0
 
-## Screenshots
-
-| # | Job | Step |
-|---|---|---|
-| 01 | VM Backup | Name & description |
-| 02 | VM Backup | Virtual Machines selection |
-| 03 | VM Backup | Add Objects (VM inventory picker) |
-| 04 | VM Backup | Virtual machines to backup summary |
-| 05 | VM Backup | Guest Processing options |
-| 06 | VM Backup | Storage / Advanced Settings (backup mode, synthetic fulls) |
-| 07 | VM Backup | Schedule configuration |
-| 08 | VM Backup | Summary & completion |
-| 10 | Agent Backup | Job Mode (Server / Managed by backup server) |
-| 9 | Agent Backup | Name & description |
-| 8 | Agent Backup | Computers (protected computers list) |
-| 7 | Agent Backup | Backup Mode (Entire computer) |
-| 5 | Agent Backup | Guest Processing (application-aware processing) |
-| 6 | Agent Backup | Storage / Advanced Settings (synthetic full backups) |
-| 4 | Agent Backup | Schedule configuration |
-| 3 | Agent Backup | Summary & completion |
-| 2 | Agent Backup | Job session — Working / building the list of objects |
-| 1 | Agent Backup | Job session — Success (throughput, data, status stats) |
-
-## Notes
-
-- Veeam B&R Community Edition is free and supports up to 10 workloads (VMs, physical/agent-based servers, or a mix).
-- Both jobs share the same backup repository, keeping backup management centralized regardless of workload type.
-- Agent-based backups are useful for physical servers or standalone machines that aren't running as VMs on the ESXi host — Veeam deploys an agent to the target OS and manages the job centrally when using "Managed by backup server" mode.
-- Retention is set to 7 days with weekly synthetic full backups created every Saturday for both jobs, keeping storage use predictable while retaining a reasonable recovery window.
-
-## License
-
-This documentation is provided for personal/educational home-lab reference.
