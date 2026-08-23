@@ -189,7 +189,7 @@ being demoed:
 terraform destroy -var="my_ip=<YOUR_IP>/32"
 ```
 
-## Notes / Honest Limitations
+## Limitations
 
 - This is a single-account, single-instance environment — a real MSP setup
   would be multi-account/multi-tenant. Kept single-account here to focus
