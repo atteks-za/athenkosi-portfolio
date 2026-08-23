@@ -3,7 +3,7 @@
 A hands-on cloud operations project simulating the first-responder monitoring
 and incident-response workflow of an MSP (Managed Service Provider) cloud
 operations team — built to demonstrate practical AWS, CloudWatch, and
-incident-response skills for a Cloud Ops / SRE role.
+incident-response skills.
 
 ## What This Is
 
@@ -146,18 +146,6 @@ re-provisioning the AWS infrastructure — Lambda, an SNS subscription, and
 FreshService API credentials — after the environment had already been torn
 down. The manual ticket demonstrates the exact output format; the automation
 path above is the natural next step to remove the human from that loop.
-
-## How This Maps to the Job Requirements
-
-| Requirement | Where it's demonstrated |
-|---|---|
-| Cloud Ops / SRE / Technical Support experience | Full incident lifecycle documented in `runbooks/` — detection, triage, remediation, recovery |
-| Strong AWS experience (compute, networking, storage, IAM) | EC2, VPC/subnets/security groups, EBS root volume, IAM roles/instance profiles — all in `terraform/` |
-| CloudWatch, Datadog, ELK, Prometheus or Grafana | CloudWatch used for metrics, alarms, dashboards; custom agent-based metric collection beyond defaults |
-| Incident management & troubleshooting experience | Two fully-documented incidents with real triggered alarms, SSH-based triage, and verified remediation |
-| FreshService or similar ITSM tools | Ticket #INC-1 created in FreshService reflecting a real triggered alarm; automated SNS → Lambda → FreshService integration path documented above |
-| Terraform, Kubernetes & automation exposure | Entire infrastructure defined and deployed via Terraform (`terraform/`) |
-| First responder for MSP customers | Runbook structure mirrors real MSP on-call response: alert → triage → fix → document |
 
 ## Repo Structure
 
