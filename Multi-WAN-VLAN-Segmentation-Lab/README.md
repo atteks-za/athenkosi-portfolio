@@ -1,10 +1,10 @@
 # Ubiquiti UniFi Multi-WAN Load Balancing & VLAN Segmentation Lab
 
-A home/office lab network built entirely on **Ubiquiti UniFi** hardware and the UniFi Network application, demonstrating dual-WAN load balancing, VLAN-based network segmentation, inter-VLAN firewall isolation, guest captive portal authentication, and per-network wireless policy control.
+A office lab network built entirely on **Ubiquiti UniFi** hardware and the UniFi Network application, demonstrating dual-WAN load balancing, VLAN-based network segmentation, inter-VLAN firewall isolation, guest captive portal authentication, and per-network wireless policy control.
 
 ## Overview
 
-This project simulates a small business network with three distinct departments (IT, Finance, Guest) sharing a single Ubiquiti UniFi gateway, each isolated at Layer 3 with independent wireless SSIDs, bandwidth policies, and firewall rules — while the WAN edge load-balances traffic across two internet circuits for redundancy and throughput. The Guest network additionally sits behind a UniFi-hosted captive portal.
+This project simulates a small business network with three distinct departments (IT, Finance, Guest) sharing a single Ubiquiti UniFi gateway, each isolated at Layer 3 with independent wireless SSIDs, bandwidth policies, and firewall rules — while the WAN edge load-balances traffic across two internet circuits for redundancy and throughput. The Guest network sits behind a UniFi-hosted captive portal.
 
 ## Hardware / Platform (Ubiquiti UniFi)
 
@@ -37,7 +37,7 @@ See full controller-generated topology diagrams:
 
 ## Initial Deployment
 
-Devices were provisioned from a factory/unadopted state through the local controller before being assigned to their final networks.
+Devices were provisioned from a factory state through the local controller before being assigned to their final networks.
 
 ![Device adoption](screenshots/device-adoption.png)
 ![Gateway fiber setup](screenshots/gateway-fiber-setup.png)
@@ -92,7 +92,7 @@ Per-SSID bandwidth shaping is applied to enforce fair usage and prioritize busin
 | Finance-WiFi  | 50 Mbps   | 50 Mbps   |
 | IT-WiFi       | 100 Mbps  | 100 Mbps  |
 
-Additional WiFi hardening includes wireless meshing for AP backhaul redundancy, UniFi Auto-Link, and WiFiman support enabled fleet-wide, with WPA2 security on all three SSIDs.
+WiFi hardening includes wireless meshing for AP backhaul redundancy, UniFi Auto-Link, and WiFiman support enabled fleet-wide, with WPA2 security on all three SSIDs.
 
 ![WiFi networks and channel plan](screenshots/wifi-networks-channel-plan.png)
 ![WiFi speed limits](screenshots/wifi-speed-limits.png)
@@ -138,4 +138,4 @@ Multi-WAN-VLAN-Segmentation-Lab/
 
 ## Notes
 
-This is a lab/demo environment (private IP ranges, internal controller access) built entirely on Ubiquiti's UniFi ecosystem to showcase enterprise-style network segmentation practices on prosumer-grade UniFi hardware.
+This is a lab environment (private IP ranges, internal controller access) built entirely on Ubiquiti's UniFi ecosystem to showcase enterprise-style network segmentation practices on prosumer-grade UniFi hardware.
